@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shafac E-Waxbarasho — English Courses</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1350A8;
+  --blue-dark:#0D3A7A;
+  --blue-light:#E8F0FB;
+  --gold:#C9922A;
+  --white:#FFFFFF;
+  --off:#F7F9FD;
+  --text:#1A1A2E;
+  --muted:#5A6478;
+  --border:#DDE4EF;
+  --radius:14px;
+  --shadow:0 4px 24px rgba(19,80,168,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-brand .logo{width:36px;height:36px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
+.nav-brand span{font-size:17px;font-weight:600;color:var(--blue-dark)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;border:none}
+.btn-outline{background:transparent;border:1.5px solid var(--blue);color:var(--blue)}
+.btn-outline:hover{background:var(--blue-light)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(19,80,168,0.25)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 60%,#1976D2 100%);
+  color:#fff;
+  padding:80px 2rem 90px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:380px;height:380px;border-radius:50%;
+  background:rgba(255,255,255,0.05);
+}
+.hero::after{
+  content:'';position:absolute;bottom:-80px;left:30%;
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(255,255,255,0.04);
+}
+.hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:5px 14px;border-radius:20px;font-size:13px;margin-bottom:20px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:700;line-height:1.2;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:#90CAF9}
+.hero-somali{font-size:17px;line-height:1.7;opacity:0.88;margin-bottom:28px;max-width:520px;background:rgba(255,255,255,0.08);padding:16px 20px;border-radius:12px;border-left:3px solid rgba(255,255,255,0.4)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--blue);font-weight:600;padding:12px 28px;border-radius:8px;font-size:15px;cursor:pointer;border:none;transition:all .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+.btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,0.5);color:#fff;padding:12px 24px;border-radius:8px;font-size:15px;cursor:pointer;transition:all .2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.1)}
+.hero-photo{position:relative;flex-shrink:0}
+.photo-frame{
+  width:200px;height:220px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.15);
+  border:2px solid rgba(255,255,255,0.3);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;overflow:hidden;
+}
+.photo-frame img{width:100%;height:100%;object-fit:cover;border-radius:18px}
+.photo-placeholder{text-align:center;color:rgba(255,255,255,0.7);font-size:13px;padding:20px}
+.photo-placeholder .icon{font-size:48px;margin-bottom:8px;display:block}
+.photo-badge{
+  position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);
+  background:#fff;color:var(--blue);
+  padding:6px 16px;border-radius:20px;
+  font-size:12px;font-weight:600;white-space:nowrap;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.hero-stats{display:flex;gap:2rem;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.2)}
+.stat span{display:block;font-size:26px;font-weight:700}
+.stat small{font-size:12px;opacity:0.7}
+
+/* WELCOME BANNER */
+.welcome-banner{background:var(--blue-light);border-bottom:1px solid var(--border);padding:16px 2rem;text-align:center}
+.welcome-banner p{font-size:15px;color:var(--blue-dark);font-weight:500}
+
+/* SECTIONS */
+.section{padding:64px 2rem;max-width:1100px;margin:auto}
+.section-label{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);font-weight:700;color:var(--text);margin-bottom:8px}
+.section-sub{font-size:16px;color:var(--muted);max-width:520px}
+
+/* COURSES */
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:36px}
+.course-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;transition:all .25s;cursor:pointer;
+}
+.course-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--blue)}
+.card-top{height:90px;display:flex;align-items:center;justify-content:center;font-size:38px;position:relative}
+.card-level-tag{position:absolute;top:10px;right:10px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+.card-body{padding:18px}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:12px}
+.card-meta{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted)}
+.card-arrow{color:var(--blue);font-size:18px;transition:transform .2s}
+.course-card:hover .card-arrow{transform:translateX(4px)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start;margin-top:36px}
+.about-photo{
+  width:180px;height:200px;border-radius:16px;
+  background:var(--blue-light);border:2px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;flex-shrink:0;overflow:hidden;
+}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-photo-placeholder{text-align:center;color:var(--muted);font-size:12px;padding:16px}
+.about-photo-placeholder .icon{font-size:40px;display:block;margin-bottom:6px}
+.about-content h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:4px}
+.about-role{font-size:14px;color:var(--blue);font-weight:600;margin-bottom:16px}
+.about-desc{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.about-contact{display:flex;gap:12px;flex-wrap:wrap}
+.contact-chip{display:inline-flex;align-items:center;gap:8px;background:var(--blue-light);color:var(--blue-dark);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500}
+
+/* HOW IT WORKS */
+.how-bg{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:36px;counter-reset:steps}
+.step{background:var(--off);border-radius:var(--radius);padding:24px;position:relative}
+.step-num{width:36px;height:36px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;margin-bottom:14px}
+.step h4{font-size:15px;font-weight:600;margin-bottom:6px}
+.step p{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* CERTIFICATE */
+.cert-preview{
+  background:linear-gradient(135deg,#fff 60%,var(--blue-light));
+  border:2px solid var(--blue);border-radius:var(--radius);
+  padding:32px;text-align:center;max-width:500px;margin:32px auto 0;
+}
+.cert-icon{font-size:48px;margin-bottom:12px}
+.cert-preview h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--blue-dark);margin-bottom:8px}
+.cert-preview p{font-size:14px;color:var(--muted)}
+.cert-seal{display:flex;justify-content:center;gap:20px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
+.seal{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--blue);font-weight:600}
+
+/* FOOTER */
+footer{background:var(--blue-dark);color:rgba(255,255,255,0.75);padding:40px 2rem;text-align:center}
+footer .brand{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:8px}
+footer p{font-size:13px;margin-bottom:16px}
+footer .links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:20px}
+footer .links a{font-size:13px;color:rgba(255,255,255,0.6);transition:color .2s}
+footer .links a:hover{color:#fff}
+footer .copy{font-size:12px;color:rgba(255,255,255,0.4)}
+
+/* ACCESS CODE MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:var(--radius);padding:32px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.modal h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px}
+.modal p{font-size:14px;color:var(--muted);margin-bottom:20px}
+.modal input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;outline:none;transition:border-color .2s}
+.modal input:focus{border-color:var(--blue)}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted)}
+.modal-msg{font-size:13px;text-align:center;padding:8px;border-radius:6px;display:none;margin-bottom:10px}
+.modal-msg.success{background:#E8F5E9;color:#27500A;display:block}
+.modal-msg.error{background:#FCEBEB;color:#A32D2D;display:block}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-photo{display:flex;justify-content:center}
+  .hero-stats{justify-content:center}
+  .about-grid{grid-template-columns:1fr;text-align:center}
+  .about-photo{margin:auto}
+  .about-contact{justify-content:center}
+  .nav-cta .btn-outline{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="logo">S</div>
+    <span>Shafac E-Waxbarasho</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#certificate">Certificate</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn btn-outline" onclick="openModal()">Enter Code</button>
+    <a href="login.html" class="btn btn-primary">Sign In</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag">🎓 English E-Learning Platform</div>
+      <h1>Learn <em>English</em><br>The Right Way</h1>
+      <div class="hero-somali">
+        <strong>🌟 Kusodhawaaw Shafac E-Waxbarasho!</strong><br>
+        Halkan ayaad ka helaysaa coorsas English ah oo dhameysan, shahaado leh, oo khuburada ay waxbarayaan. Bilow maanta — waxbarashadu waa furaha mustaqbalka!
+      </div>
+      <div class="hero-actions">
+        <button class="btn-white" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">🚀 Bilow Hadda — Start Now</button>
+        <button class="btn-ghost" onclick="openModal()">🔑 Enter Access Code</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span>5</span><small>Course Types</small></div>
+        <div class="stat"><span>3</span><small>Instructors</small></div>
+        <div class="stat"><span>🏅</span><small>Certificate</small></div>
+        <div class="stat"><span>Free</span><small>Registration</small></div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame" id="heroPhotoFrame">
+        <!-- Replace the placeholder below with: <img src="your-photo.jpg" alt="Shafac Hussein Omar"> -->
+        <div class="photo-placeholder">
+          <span class="icon">👤</span>
+          <strong>Shafac Hussein Omar</strong><br>Web Developer &<br>Lead Instructor
+        </div>
+      </div>
+      <div class="photo-badge">📘 Lead Instructor</div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<div id="courses" style="background:#fff;border-bottom:1px solid var(--border)">
+<div class="section">
+  <div class="section-label">What we offer</div>
+  <div class="section-title">5 Course Categories</div>
+  <div class="section-sub">From your first words to fluent conversation — we have the right course for your level.</div>
+
+  <div class="courses-grid">
+
+    <div class="course-card" onclick="location.href='course-beginner.html'">
+      <div class="card-top" style="background:#E3F2FD">
+        🔤
+        <span class="card-level-tag" style="background:#1565C0;color:#fff">Level 1</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Beginner English</div>
+        <div class="card-desc">Alphabets, basic words, simple sentences — perfect for complete beginners.</div>
+        <div class="card-meta">
+          <span>📹 Video lessons + Quiz</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" onclick="location.href='course-intermediate.html'">
+      <div class="card-top" style="background:#E8F5E9">
+        📖
+        <span class="card-level-tag" style="background:#2E7D32;color:#fff">Level 2</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Intermediate English</div>
+        <div class="card-desc">Grammar, reading, listening, and writing skills to grow your fluency.</div>
+        <div class="card-meta">
+          <span>📹 Video lessons + Quiz</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" onclick="location.href='course-advanced.html'">
+      <div class="card-top" style="background:#FFF3E0">
+        🎓
+        <span class="card-level-tag" style="background:#E65100;color:#fff">Level 3</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Advanced English</div>
+        <div class="card-desc">Business English, academic writing, IELTS prep — for serious learners.</div>
+        <div class="card-meta">
+          <span>📹 Video lessons + Quiz</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" onclick="location.href='course-conversation.html'">
+      <div class="card-top" style="background:#EDE7F6">
+        💬
+        <span class="card-level-tag" style="background:#6A1B9A;color:#fff">Live</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Conversation</div>
+        <div class="card-desc">Real dialogue, listening practice, and speaking confidence with native-style lessons.</div>
+        <div class="card-meta">
+          <span>🎧 Audio + Practice</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" onclick="location.href='course-speech.html'">
+      <div class="card-top" style="background:#FCE4EC">
+        🎤
+        <span class="card-level-tag" style="background:#AD1457;color:#fff">Pro</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Speech</div>
+        <div class="card-desc">Pronunciation, accent reduction, public speaking, and clarity of expression.</div>
+        <div class="card-meta">
+          <span>🎤 Video + Exercises</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-bg" id="how">
+<div class="section">
+  <div class="section-label">Process</div>
+  <div class="section-title">How It Works</div>
+  <div class="section-sub">Simple steps to start your English learning journey today.</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Register Free</h4>
+      <p>Create your free account with your name and email. No payment needed to sign up.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Choose a Course</h4>
+      <p>Browse our 5 course types. Free preview lessons available for everyone.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Get Access Code</h4>
+      <p>Contact us to pay and receive your unique code that unlocks your full course.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Watch & Learn</h4>
+      <p>Watch video lessons at your own pace on YouTube or Telegram — anytime, anywhere.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <h4>Pass the Quiz</h4>
+      <p>Complete the quiz at the end of each course to test your knowledge.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <h4>Get Certificate</h4>
+      <p>Download your official Shafac E-Waxbarasho certificate to share with the world!</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div style="background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)" id="about">
+<div class="section">
+  <div class="section-label">About the instructor</div>
+  <div class="section-title">Shafac Hussein Omar</div>
+  <div class="about-grid">
+    <div class="about-photo" id="aboutPhotoFrame">
+      <!-- Replace with: <img src="your-photo.jpg" alt="Shafac Hussein Omar"> -->
+      <div class="about-photo-placeholder">
+        <span class="icon">👤</span>
+        Add your photo here
+      </div>
+    </div>
+    <div class="about-content">
+      <h3>Shafac Hussein Omar</h3>
+      <div class="about-role">🌐 Web Developer &amp; Lead English Instructor</div>
+      <p class="about-desc">
+        Ku soo dhawoow Shafac E-Waxbarasho! Aniga waxaan ahay Shafac Hussein Omar, web developer iyo macalin English ah. Waxaan aaminanahay in waxbarashadu tahay furaha mustaqbalka, taasna ayaa keentay in aan aasaaso barnaamijkan si looga caawiyo ardayda Soomaaliyeed inay English si fiican u bartaan — xirfad, xog, iyo shahaado leh.
+      </p>
+      <div class="about-contact">
+        <div class="contact-chip">📞 +252 71 829777</div>
+        <div class="contact-chip">🌍 Shafac E-Waxbarasho</div>
+        <div class="contact-chip">💼 Web Developer</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CERTIFICATE -->
+<div id="certificate">
+<div class="section" style="text-align:center">
+  <div class="section-label" style="justify-content:center;display:flex">Recognition</div>
+  <div class="section-title">Earn a Certificate</div>
+  <div class="section-sub" style="margin:auto">Complete any course, pass the final quiz, and receive your official Shafac E-Waxbarasho certificate — free.</div>
+
+  <div class="cert-preview">
+    <div class="cert-icon">🏅</div>
+    <h3>Certificate of Completion</h3>
+    <p style="margin-bottom:8px;font-size:15px">This certifies that</p>
+    <p style="font-family:'Playfair Display',serif;font-size:20px;color:var(--blue-dark);font-weight:700;margin-bottom:4px">[Your Name]</p>
+    <p>has successfully completed</p>
+    <p style="font-weight:600;color:var(--text);margin-top:4px">Beginner English Course</p>
+    <div class="cert-seal">
+      <div class="seal">✅ Verified</div>
+      <div class="seal">📘 Shafac E-Waxbarasho</div>
+      <div class="seal">🌍 Official</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">📘 Shafac E-Waxbarasho</div>
+  <p>English language courses with certificates — for every learner</p>
+  <div class="links">
+    <a href="#courses">Courses</a>
+    <a href="#about">About</a>
+    <a href="#how">How it Works</a>
+    <a href="login.html">Sign In</a>
+    <a href="admin.html">Admin</a>
+  </div>
+  <div class="copy">© 2026 Shafac Hussein Omar · Web Developer · +252 71 829777</div>
+</footer>
+
+<!-- ACCESS CODE MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div style="font-size:32px;margin-bottom:12px">🔑</div>
+    <h3>Enter Access Code</h3>
+    <p>Enter the code you received after payment to unlock your course.</p>
+    <div class="modal-msg" id="modalMsg"></div>
+    <input type="text" id="codeInput" placeholder="e.g. SHFAC-2847" maxlength="12" oninput="this.value=this.value.toUpperCase()">
+    <button class="btn btn-primary" style="width:100%;padding:12px;font-size:15px" onclick="checkCode()">Unlock Course →</button>
+    <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:12px">Need a code? Contact: <strong>+252 71 829777</strong></p>
+  </div>
+</div>
+
+<script>
+// Modal
+function openModal(){document.getElementById('modalOverlay').classList.add('open')}
+function closeModal(e){if(!e||e.target===document.getElementById('modalOverlay'))document.getElementById('modalOverlay').classList.remove('open')}
+
+// Access code check — these codes would come from the backend in the real version
+const validCodes={'SHFAC-0001':'Beginner English','SHFAC-0002':'Intermediate English','SHFAC-0003':'Advanced English','SHFAC-CONV':'Conversation','SHFAC-SPCH':'Speech'};
+function checkCode(){
+  const code=document.getElementById('codeInput').value.trim();
+  const msg=document.getElementById('modalMsg');
+  msg.className='modal-msg';
+  if(validCodes[code]){
+    msg.classList.add('success');
+    msg.textContent='✅ Code valid! Unlocking: '+validCodes[code]+'...';
+    setTimeout(()=>{location.href='course-beginner.html'},1500);
+  } else {
+    msg.classList.add('error');
+    msg.textContent='❌ Invalid code. Please check and try again, or contact +252 71 829777';
+  }
+}
+
+// Hamburger menu
+function toggleMenu(){
+  const links=document.querySelector('.nav-links');
+  links.style.display=links.style.display==='flex'?'none':'flex';
+  links.style.flexDirection='column';
+  links.style.position='fixed';
+  links.style.top='64px';links.style.left='0';links.style.right='0';
+  links.style.background='#fff';links.style.padding='1rem 2rem';
+  links.style.borderBottom='1px solid var(--border)';
+  links.style.zIndex='99';
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// Allow Enter key in code input
+document.getElementById('codeInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkCode()});
+</script>
+</body>
+</html>

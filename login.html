@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Shafac E-Waxbarasho</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1350A8;--blue-dark:#0D3A7A;--blue-light:#E8F0FB;--text:#1A1A2E;--muted:#5A6478;--border:#DDE4EF;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--blue-dark);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.card{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:28px;justify-content:center}
+.logo-icon{width:44px;height:44px;background:var(--blue);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:22px;font-weight:700}
+.logo span{font-size:18px;font-weight:600;color:var(--blue-dark)}
+.tabs{display:flex;gap:0;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:28px}
+.tab{flex:1;padding:11px;text-align:center;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;border:none;background:transparent;color:var(--muted)}
+.tab.active{background:var(--blue);color:#fff}
+.form-group{margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px}
+input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s;color:var(--text)}
+input:focus{border-color:var(--blue)}
+.btn-primary{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;margin-top:4px}
+.btn-primary:hover{background:var(--blue-dark)}
+.divider{text-align:center;font-size:13px;color:var(--muted);margin:16px 0;position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}
+.divider::before{left:0}.divider::after{right:0}
+.msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;display:none}
+.msg.error{background:#FCEBEB;color:#A32D2D;display:block}
+.msg.success{background:#E8F5E9;color:#27500A;display:block}
+.back{text-align:center;margin-top:20px;font-size:13px;color:var(--muted)}
+.back a{color:var(--blue);font-weight:500}
+.panel{display:none}.panel.active{display:block}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <div class="logo-icon">S</div>
+    <span>Shafac E-Waxbarasho</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('login',this)">Sign In</button>
+    <button class="tab" onclick="switchTab('register',this)">Register</button>
+  </div>
+
+  <!-- LOGIN PANEL -->
+  <div class="panel active" id="panel-login">
+    <div class="msg" id="login-msg"></div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" id="login-email" placeholder="you@email.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="••••••••">
+    </div>
+    <button class="btn-primary" onclick="doLogin()">Sign In →</button>
+    <div class="divider">or</div>
+    <p style="text-align:center;font-size:13px;color:var(--muted)">Admin? <a href="admin.html" style="color:var(--blue);font-weight:500">Go to Admin Panel</a></p>
+  </div>
+
+  <!-- REGISTER PANEL -->
+  <div class="panel" id="panel-register">
+    <div class="msg" id="reg-msg"></div>
+    <div class="form-group">
+      <label>Full name</label>
+      <input type="text" id="reg-name" placeholder="Your full name">
+    </div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" id="reg-email" placeholder="you@email.com">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="reg-pass" placeholder="Choose a password">
+    </div>
+    <div class="form-group">
+      <label>Access code (optional — enter after payment)</label>
+      <input type="text" id="reg-code" placeholder="e.g. SHFAC-2847" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+    </div>
+    <button class="btn-primary" onclick="doRegister()">Create Account →</button>
+  </div>
+
+  <div class="back"><a href="index.html">← Back to homepage</a></div>
+</div>
+
+<script>
+function switchTab(tab, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+
+function showMsg(id, type, text){
+  const el=document.getElementById(id);
+  el.className='msg '+type;
+  el.textContent=text;
+}
+
+// In the real version, this sends data to the backend (Node.js/PHP server)
+function doLogin(){
+  const email=document.getElementById('login-email').value.trim();
+  const pass=document.getElementById('login-pass').value;
+  if(!email||!pass){showMsg('login-msg','error','Please fill in all fields.');return;}
+  // DEMO: simulate login — connect to real backend later
+  showMsg('login-msg','success','Logging you in...');
+  setTimeout(()=>location.href='dashboard.html',1200);
+}
+
+function doRegister(){
+  const name=document.getElementById('reg-name').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const pass=document.getElementById('reg-pass').value;
+  if(!name||!email||!pass){showMsg('reg-msg','error','Please fill in all required fields.');return;}
+  showMsg('reg-msg','success','Account created! Signing you in...');
+  setTimeout(()=>location.href='dashboard.html',1200);
+}
+</script>
+</body>
+</html>

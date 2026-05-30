@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beginner English — Shafac E-Waxbarasho</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1350A8;--blue-dark:#0D3A7A;--blue-light:#E8F0FB;--text:#1A1A2E;--muted:#5A6478;--border:#DDE4EF;--radius:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F0F4FB;color:var(--text)}
+nav{background:#fff;border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600;color:var(--blue-dark)}
+.layout{display:grid;grid-template-columns:1fr 320px;gap:24px;padding:24px;max-width:1200px;margin:auto}
+.video-area{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+.video-header{padding:20px;border-bottom:1px solid var(--border)}
+.video-header h1{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px}
+.course-badge{display:inline-block;background:var(--blue-light);color:var(--blue);padding:3px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:10px}
+.video-frame{width:100%;aspect-ratio:16/9;background:#1A1A2E;position:relative;display:flex;align-items:center;justify-content:center}
+.video-frame iframe{width:100%;height:100%;border:none}
+.video-placeholder{text-align:center;color:rgba(255,255,255,0.7);padding:40px}
+.video-placeholder .icon{font-size:64px;display:block;margin-bottom:16px}
+.video-placeholder h3{font-size:18px;margin-bottom:8px}
+.video-placeholder p{font-size:14px;opacity:0.7}
+.video-meta{padding:16px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;flex:1;min-width:120px}
+.progress-fill{height:100%;background:var(--blue);border-radius:3px;transition:width .4s}
+
+/* SIDEBAR */
+.sidebar{}
+.card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;margin-bottom:16px}
+.card-head{padding:14px 18px;border-bottom:1px solid var(--border);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.lesson-list{}
+.lesson-item{display:flex;align-items:center;gap:12px;padding:12px 18px;cursor:pointer;border-bottom:1px solid #F5F7FB;transition:background .15s}
+.lesson-item:last-child{border-bottom:none}
+.lesson-item:hover{background:#F7FAFF}
+.lesson-item.active{background:var(--blue-light);border-left:3px solid var(--blue)}
+.lesson-item.done .lesson-icon{background:#E8F5E9;color:#27500A}
+.lesson-icon{width:32px;height:32px;border-radius:50%;background:var(--blue-light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.lesson-info{flex:1}
+.lesson-title{font-size:13px;font-weight:500;color:var(--text)}
+.lesson-type{font-size:11px;color:var(--muted)}
+.lesson-check{color:#27500A;font-size:14px}
+
+/* QUIZ */
+.quiz-section{padding:24px}
+.quiz-q{font-size:16px;font-weight:600;margin-bottom:16px;color:var(--text)}
+.quiz-opts{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.quiz-opt{padding:12px 16px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;font-size:14px;text-align:left;background:#fff;transition:all .2s;font-family:inherit}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-light)}
+.quiz-opt.correct{border-color:#27500A;background:#E8F5E9;color:#27500A}
+.quiz-opt.wrong{border-color:#A32D2D;background:#FCEBEB;color:#A32D2D}
+.quiz-result{padding:12px 16px;border-radius:8px;font-size:14px;text-align:center;margin-bottom:12px;display:none}
+.cert-box{background:linear-gradient(135deg,#fff 50%,var(--blue-light));border:2px solid var(--blue);border-radius:var(--radius);padding:28px;text-align:center;margin:20px 0;display:none}
+.cert-box h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--blue-dark);margin-bottom:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:var(--blue-dark)}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{order:-1}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">📘 Shafac E-Waxbarasho</div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <span style="font-size:13px;color:var(--muted)">Ahmed Ali</span>
+    <a href="index.html" class="btn btn-outline" style="padding:7px 14px;font-size:13px">← Home</a>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- VIDEO AREA -->
+  <div>
+    <div class="video-area">
+      <div class="video-header">
+        <div class="course-badge">🔤 Beginner English — Level 1</div>
+        <h1 id="lessonTitle">Lesson 1: Introduction to the Alphabet</h1>
+        <p style="font-size:13px;color:var(--muted)">Watch the video below, then complete the quiz to earn your certificate.</p>
+      </div>
+
+      <div class="video-frame" id="videoFrame">
+        <!-- YouTube video embeds here. Replace VIDEO_ID with real YouTube video ID -->
+        <!-- Example: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+        <div class="video-placeholder">
+          <span class="icon">▶️</span>
+          <h3>Video Lesson</h3>
+          <p>Instructor will upload the YouTube or Telegram video link here.<br>Replace VIDEO_ID below with the real YouTube video ID.</p>
+          <br>
+          <code style="background:rgba(255,255,255,0.1);padding:6px 12px;border-radius:6px;font-size:12px">
+            &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"&gt;&lt;/iframe&gt;
+          </code>
+        </div>
+      </div>
+
+      <div class="video-meta">
+        <span style="font-size:13px;color:var(--muted)">Your progress:</span>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:16%"></div></div>
+        <span style="font-size:13px;font-weight:600;color:var(--blue)" id="progressText">1 / 6 lessons</span>
+      </div>
+    </div>
+
+    <!-- QUIZ SECTION -->
+    <div class="card" style="margin-top:20px">
+      <div class="card-head">❓ Lesson Quiz <span style="font-size:12px;color:var(--muted);font-weight:400" id="quizNum">Question 1 of 3</span></div>
+      <div class="quiz-section">
+        <div class="quiz-q" id="quizQ">What is the first letter of the English alphabet?</div>
+        <div class="quiz-opts" id="quizOpts"></div>
+        <div class="quiz-result" id="quizResult"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap" id="quizActions">
+          <button class="btn btn-outline" onclick="prevQ()">← Previous</button>
+          <button class="btn btn-blue" onclick="nextQ()">Next Question →</button>
+        </div>
+        <div class="cert-box" id="certBox">
+          <div style="font-size:40px;margin-bottom:10px">🏅</div>
+          <h3>Certificate of Completion</h3>
+          <p style="color:var(--muted);font-size:14px;margin-bottom:8px">This certifies that</p>
+          <p style="font-family:'Playfair Display',serif;font-size:20px;color:var(--blue-dark);font-weight:700">Ahmed Ali</p>
+          <p style="color:var(--muted);font-size:14px">has successfully completed</p>
+          <p style="font-weight:600;font-size:16px;margin-top:4px">Beginner English — Shafac E-Waxbarasho</p>
+          <p style="font-size:12px;color:var(--muted);margin-top:12px" id="certDate"></p>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+            <button class="btn btn-blue" onclick="window.print()">🖨️ Print Certificate</button>
+            <button class="btn btn-outline" onclick="location.href='index.html'">← More Courses</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="card">
+      <div class="card-head">📚 Course Lessons <span style="font-size:11px;color:var(--muted);font-weight:400">6 lessons</span></div>
+      <div class="lesson-list" id="lessonList"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">🎓 Your Progress</div>
+      <div style="padding:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:center">
+          <div style="background:var(--blue-light);border-radius:8px;padding:14px">
+            <div style="font-size:22px;font-weight:700;color:var(--blue)" id="doneCount">1</div>
+            <div style="font-size:11px;color:var(--muted)">Completed</div>
+          </div>
+          <div style="background:#F7F9FD;border-radius:8px;padding:14px">
+            <div style="font-size:22px;font-weight:700;color:var(--text)" id="leftCount">5</div>
+            <div style="font-size:11px;color:var(--muted)">Remaining</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:var(--muted);text-align:center">Complete all lessons and pass the quiz to earn your certificate</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">📞 Need Help?</div>
+      <div style="padding:16px;font-size:13px;color:var(--muted);line-height:1.6">
+        Contact your instructor:<br>
+        <strong style="color:var(--text)">Shafac Hussein Omar</strong><br>
+        📞 +252 71 829777
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const lessons=[
+  {title:"Introduction to the Alphabet",type:"video",done:true},
+  {title:"Vowel Sounds: A, E, I, O, U",type:"video",done:false},
+  {title:"Quiz: Letter Sounds",type:"quiz",done:false},
+  {title:"Consonant Sounds",type:"video",done:false},
+  {title:"Blending Letters into Words",type:"video",done:false},
+  {title:"Final Quiz — Beginner Level",type:"quiz",done:false},
+];
+
+const quizzes=[
+  {q:"What is the first letter of the English alphabet?",opts:["A","B","C","D"],ans:0},
+  {q:"How many vowels are in the English alphabet?",opts:["3","4","5","6"],ans:2},
+  {q:"Which word starts with the letter 'B'?",opts:["Apple","Ball","Cat","Dog"],ans:1},
+];
+
+let currentLesson=0;
+let currentQ=0;
+let score=0;
+let answered=[];
+
+function renderLessons(){
+  const list=document.getElementById('lessonList');
+  list.innerHTML=lessons.map((l,i)=>`
+    <div class="lesson-item ${i===currentLesson?'active':''} ${l.done?'done':''}" onclick="selectLesson(${i})">
+      <div class="lesson-icon">${l.type==='quiz'?'❓':l.done?'✅':'▶️'}</div>
+      <div class="lesson-info">
+        <div class="lesson-title">${l.title}</div>
+        <div class="lesson-type">${l.type==='quiz'?'Quiz':'Video lesson'}</div>
+      </div>
+      ${l.done?'<span class="lesson-check">✓</span>':''}
+    </div>
+  `).join('');
+  const done=lessons.filter(l=>l.done).length;
+  document.getElementById('doneCount').textContent=done;
+  document.getElementById('leftCount').textContent=lessons.length-done;
+  const pct=Math.round((done/lessons.length)*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressText').textContent=done+' / '+lessons.length+' lessons';
+}
+
+function selectLesson(i){
+  currentLesson=i;
+  document.getElementById('lessonTitle').textContent='Lesson '+(i+1)+': '+lessons[i].title;
+  renderLessons();
+}
+
+function renderQuiz(){
+  const q=quizzes[currentQ];
+  document.getElementById('quizQ').textContent=q.q;
+  document.getElementById('quizNum').textContent='Question '+(currentQ+1)+' of '+quizzes.length;
+  document.getElementById('quizResult').style.display='none';
+  const opts=document.getElementById('quizOpts');
+  opts.innerHTML=q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answer(this,${i},${q.ans})">${o}</button>`).join('');
+  if(answered[currentQ]!==undefined){
+    const btns=opts.querySelectorAll('.quiz-opt');
+    btns.forEach((b,i)=>{
+      b.disabled=true;
+      if(i===q.ans)b.classList.add('correct');
+      else if(i===answered[currentQ]&&answered[currentQ]!==q.ans)b.classList.add('wrong');
+    });
+    const res=document.getElementById('quizResult');
+    res.style.display='block';
+    if(answered[currentQ]===q.ans){res.style.background='#E8F5E9';res.style.color='#27500A';res.textContent='✅ Correct!'}
+    else{res.style.background='#FCEBEB';res.style.color='#A32D2D';res.textContent='❌ Wrong. Correct answer highlighted.'}
+  }
+}
+
+function answer(btn, chosen, correct){
+  if(answered[currentQ]!==undefined)return;
+  answered[currentQ]=chosen;
+  document.querySelectorAll('.quiz-opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(i===correct)b.classList.add('correct');
+    else if(i===chosen&&chosen!==correct)b.classList.add('wrong');
+  });
+  const res=document.getElementById('quizResult');
+  res.style.display='block';
+  if(chosen===correct){
+    res.style.background='#E8F5E9';res.style.color='#27500A';res.textContent='✅ Correct!';
+    score++;
+  } else {
+    res.style.background='#FCEBEB';res.style.color='#A32D2D';res.textContent='❌ Incorrect. See correct answer above.';
+  }
+  if(answered.length===quizzes.length&&answered.every(a=>a!==undefined)){
+    setTimeout(showCert, 800);
+  }
+}
+
+function nextQ(){
+  if(currentQ<quizzes.length-1){currentQ++;renderQuiz();}
+}
+function prevQ(){
+  if(currentQ>0){currentQ--;renderQuiz();}
+}
+
+function showCert(){
+  const box=document.getElementById('certBox');
+  box.style.display='block';
+  document.getElementById('certDate').textContent='Completed: '+new Date().toLocaleDateString('en-GB',{year:'numeric',month:'long',day:'numeric'});
+  box.scrollIntoView({behavior:'smooth'});
+}
+
+renderLessons();
+renderQuiz();
+</script>
+</body>
+</html>
